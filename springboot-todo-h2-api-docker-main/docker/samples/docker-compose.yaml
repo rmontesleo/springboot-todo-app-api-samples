@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  api:
+    image: 'springboot-todo-h2-api-docker:${TODO_API_VERSION}'
+    container_name: api-h2-docker-container
+    ports:
+      - "8080:8080"
+
+networks:
+  default:
+    name: api-h2-docker-network

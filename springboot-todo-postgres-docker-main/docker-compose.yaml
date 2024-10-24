@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+
+  db:
+    image: 'postgres:11'
+    container_name: posgresqldb
+    ports:
+      - "5432:5432"
+
+   
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    ports:
+      - 9090:80
+   
+
+  api:
+    image: springboot-todo-postgres-docker
+    ports:
+      - "8080-8085:8080"
+        
+
+volumes:
+  springboot-todo-postgres-docker-db-volume:
+  springboot-todo-postgres-docker-pgadmin-volume:
+
+
+networks:
+  default:
+    name: springboot-todo-postgres-docker-network

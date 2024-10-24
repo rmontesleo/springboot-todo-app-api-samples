@@ -1,0 +1,3 @@
+http://localhost:8080,LOCAL_8080,FALSE
+http://ubuntu22.cloud.server:8080,UBUNTU_VM_8080,FALSE
+http://ubuntu22.cloud.server,UBUNTU_VM_80,FALSE

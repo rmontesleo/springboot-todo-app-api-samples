@@ -1,0 +1,38 @@
+version: '3.7'
+
+services:
+
+  db:
+    image: 'postgres:11'
+    container_name: posgresqldb
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - spring-todoapi-postgres-db-volume:/var/lib/posgresql/data
+
+    environment:
+      - POSTGRES_USER=postgres_user
+      - POSTGRES_PASSWORD=SuperSecret
+      - POSTGRES_DB=todoappdb
+
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    ports:
+      - 9090:80
+    volumes:
+      - spring-todoapi-postgres-pgadmin-volume:/var/lib/pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=user@domain.com
+      - PGADMIN_DEFAULT_PASSWORD=pgadminpassword
+
+volumes:
+  spring-todoapi-postgres-db-volume:
+  spring-todoapi-postgres-pgadmin-volume:
+
+
+networks:
+  default:
+    name: spring-todoapi-postgres-network
