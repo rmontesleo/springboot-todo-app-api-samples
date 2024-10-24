@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:tns="http://www.soap.demo.example.com/api/taskTracker"
+    targetNamespace="http://www.soap.demo.example.com/api/taskTracker"
+    elementFormDefault="qualified">
+
+
+    <xsd:complexType name="TaskInfo">
+        <xsd:sequence>
+            <xsd:element name="id" type="xsd:long" minOccurs="0" maxOccurs="1" />
+            <xsd:element name="text" type="xsd:string"  minOccurs="1" maxOccurs="1" />
+            <xsd:element name="day" type="xsd:string"   minOccurs="1" maxOccurs="1" />
+            <xsd:element name="reminder" type="xsd:boolean" minOccurs="1" maxOccurs="1" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name ="TaskList">
+         <xsd:sequence>
+            <xsd:element name="task" type="tns:TaskInfo" minOccurs="0" maxOccurs="unbounded" />
+         </xsd:sequence>
+     </xsd:complexType>
+
+
+    <xsd:element name="getAllTasksRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="status" type="xsd:boolean" />
+            </xsd:sequence>
+        </xsd:complexType>
+
+    </xsd:element>
+
+    <xsd:element name="getAllTasksResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="taskList" type="tns:TaskList" minOccurs="1" maxOccurs="1"  />
+                <xsd:element name="serviceStatus" type="xsd:int"  minOccurs="1" maxOccurs="1" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+
+
+
+    <xsd:element name="addTaskRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="text" type="xsd:string" />
+                <xsd:element name="day" type="xsd:string" />
+                <xsd:element name="reminder" type="xsd:boolean" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="addTaskResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="newTask" type="tns:TaskInfo" />
+                <xsd:element name="serviceStatus" type="xsd:int"  minOccurs="1" maxOccurs="1" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+
+    <xsd:element name="getTaskByIdRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="taskId" type="xsd:long" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="getTaskByIdResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="taskInfo" type="tns:TaskInfo" />
+                <xsd:element name="serviceStatus" type="xsd:int"  minOccurs="1" maxOccurs="1" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+
+    <xsd:element name="deleteTaskRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="taskId" type="xsd:long" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="deleteTaskResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="serviceStatus" type="xsd:int"  minOccurs="1" maxOccurs="1" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="updateTaskRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="taskInfo" type="tns:TaskInfo" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="updateTaskResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="updatedTask" type="tns:TaskInfo"  minOccurs="0" maxOccurs="1" />
+                <xsd:element name="serviceStatus" type="xsd:int"  minOccurs="1" maxOccurs="1" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+
+</xsd:schema>

@@ -1,0 +1,35 @@
+server:
+  port: 9090
+
+
+spring:
+  application:
+    name: tasktracker
+  datasource:
+    username: sa
+    password: SuperSecret
+    url: jdbc:h2:mem:todoappdb
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        '[format_sql]': true
+    show-sql: true
+  output:
+    ansi:
+      enabled: ALWAYS
+
+logging:
+  level:
+    root: INFO
+    '[org.springframework.web]': ERROR
+    '[org.hibernate]': ERROR
+    '[com.example.demo.soap.*]': DEBUG
+
+
+allowOrigins: "http://localhost:4200,http://localhost:3000"
+wsNamespace: "http://www.soap.demo.example.com/api/taskTracker"
+locationUri: "http://localhost:9090/ws/taskTracker.wsdl"
+
